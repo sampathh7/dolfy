@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dolfy – Travel Back to the 1900s</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Dolfy is a vintage shopping website with 1900s clothing and material replicas – products that take you back in time."
+  />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #06060a;
+      --bg-soft: #101017;
+      --card: #15151f;
+      --accent: #f5e0c3;
+      --accent-soft: rgba(245, 224, 195, 0.1);
+      --text: #f8f5f0;
+      --muted: #b2a9a0;
+      --border: rgba(245, 224, 195, 0.18);
+      --danger: #d76b5f;
+      --radius-xl: 1.5rem;
+      --radius-lg: 1rem;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.75);
+      --shadow-subtle: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1c1c26 0, #06060a 55%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Layout */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(6, 6, 10, 0.96),
+        rgba(6, 6, 10, 0.82),
+        transparent
+      );
+      border-bottom: 1px solid rgba(245, 224, 195, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: 0.9rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 224, 195, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 30% 0%, #f5e0c3 0, #3d2c20 55%, #06060a 100%);
+      font-family: "Playfair Display", serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      box-shadow: 0 0 24px rgba(245, 224, 195, 0.4);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.05rem;
+    }
+
+    .logo-text span:first-child {
+      font-family: "Playfair Display", serif;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .logo-text span:last-child {
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -0.45rem;
+      width: 0;
+      height: 1px;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--accent), var(--danger));
+      transition: width 0.18s ease-out;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .btn {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 0.5rem 1.3rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      background: none;
+      color: var(--text);
+      transition: all 0.18s ease-out;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .btn-ghost {
+      border-color: rgba(245, 224, 195, 0.4);
+      background: rgba(6, 6, 10, 0.6);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(245, 224, 195, 0.06);
+      box-shadow: var(--shadow-subtle);
+      transform: translateY(-1px);
+    }
+
+    .btn-accent {
+      border: none;
+      background: linear-gradient(135deg, #f5e0c3, #d19962);
+      color: #2b1f17;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-accent:hover {
+      filter: brightness(1.04);
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.9);
+    }
+
+    .menu-toggle {
+      display: none;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 224, 195, 0.35);
+      background: rgba(6, 6, 10, 0.7);
+      padding: 0.3rem 0.7rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    /* Hero */
+    main {
+      flex: 1;
+    }
+
+    .hero {
+      padding: 3.5rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(260px, 1.05fr);
+      gap: 2.8rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(15, 15, 24, 0.7);
+      border: 1px solid rgba(245, 224, 195, 0.26);
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.1rem;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(245, 224, 195, 0.9);
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.3rem, 4vw, 3.1rem);
+      line-height: 1.08;
+      margin-bottom: 1rem;
+    }
+
+    .hero-title span {
+      display: inline-block;
+      background: linear-gradient(120deg, #f5e0c3, #f2c791, #d69f6b);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      max-width: 30rem;
+      font-size: 0.98rem;
+      color: var(--muted);
+      margin-bottom: 1.7rem;
+    }
+
+    .hero-subtitle strong {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hero-note-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 224, 195, 0.6);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.3rem;
+      margin-top: 1.2rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .hero-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .hero-meta span::before {
+      content: "";
+      width: 18px;
+      height: 1px;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--accent), transparent);
+    }
+
+    .hero-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at 0 0, #3b2c1f 0, #15151f 40%, #06060a 100%);
+      padding: 1.2rem;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-tag {
+      position: absolute;
+      top: 1.1rem;
+      right: 1.2rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #201813;
+      background: rgba(245, 224, 195, 0.9);
+      padding: 0.25rem 0.9rem;
+      border-radius: 999px;
+    }
+
+    .hero-photo {
+      border-radius: 1.2rem;
+      overflow: hidden;
+      border: 1px solid rgba(245, 224, 195, 0.35);
+      background:
+        linear-gradient(120deg, rgba(245, 224, 195, 0.09), transparent 60%),
+        url("https://images.pexels.com/photos/3770527/pexels-photo-3770527.jpeg?auto=compress&cs=tinysrgb&w=800")
+          center/cover;
+      aspect-ratio: 4 / 5;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-product-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 0.8rem;
+    }
+
+    .hero-product-text h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.08rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .hero-product-text p {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-price {
+      text-align: right;
+      font-size: 0.8rem;
+    }
+
+    .hero-price strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    /* Collections */
+    .section {
+      padding: 2.7rem 0 2.6rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1.3rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: 1.5rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 26rem;
+    }
+
+    .section-pill {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .section-pill span {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 224, 195, 0.3);
+      background: rgba(10, 10, 16, 0.9);
+    }
+
+    .collection-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.4rem;
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: rgba(10, 10, 16, 0.98);
+      box-shadow: var(--shadow-subtle);
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(245, 224, 195, 0.08), transparent 55%);
+      pointer-events: none;
+    }
+
+    .card-badge {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+    }
+
+    .card-era {
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+
+    .card-title {
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+    }
+
+    .card-text {
+      font-size: 0.86rem;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    .card-link {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-top: 0.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--accent);
+    }
+
+    .card-link span {
+      font-size: 1.1rem;
+      transform: translateY(1px);
+    }
+
+    /* Featured products */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .product-card {
+      border-radius: 1rem;
+      border: 1px solid var(--border);
+      background: var(--bg-soft);
+      box-shadow: var(--shadow-subtle);
+      padding: 0.7rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-size: 0.8rem;
+    }
+
+    .product-image {
+      border-radius: 0.8rem;
+      overflow: hidden;
+      border: 1px solid rgba(245, 224, 195, 0.25);
+      background: #1f1f28;
+      aspect-ratio: 4 / 5;
+    }
+
+    .product-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .product-price {
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .product-tag {
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 224, 195, 0.3);
+    }
+
+    .product-cta {
+      margin-top: 0.4rem;
+      padding-top: 0.4rem;
+      border-top: 1px dashed rgba(245, 224, 195, 0.18);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .product-cta button {
+      border-radius: 999px;
+      border: 1px solid rgba(245, 224, 195, 0.35);
+      background: rgba(6, 6, 10, 0.8);
+      padding: 0.3rem 0.7rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text);
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .product-cta button:hover {
+      background: rgba(245, 224, 195, 0.08);
+    }
+
+    .product-cta small {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    /* Why Dolfy */
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 2.2rem;
+      align-items: center;
+    }
+
+    .why-points {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.1rem;
+    }
+
+    .why-point {
+      border-radius: 1rem;
+      border: 1px solid var(--border);
+      background: rgba(10, 10, 16, 0.95);
+      padding: 0.9rem;
+      font-size: 0.82rem;
+      box-shadow: var(--shadow-subtle);
+    }
+
+    .why-point h4 {
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .why-icon {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .why-card {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top, #262030, #090910);
+      padding: 1rem;
+      box-shadow: var(--shadow-soft);
+      font-size: 0.82rem;
+    }
+
+    .why-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .why-card p {
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .why-card ul {
+      list-style: none;
+      display: grid;
+      gap: 0.45rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .why-card li {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .why-card li span {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .why-card-footer {
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(245, 224, 195, 0.18);
+      padding-top: 0.6rem;
+    }
+
+    /* Testimonials + Newsletter */
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 2rem;
+    }
+
+    .testimonial-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: rgba(10, 10, 16, 0.96);
+      padding: 1rem;
+      box-shadow: var(--shadow-subtle);
+      font-size: 0.84rem;
+    }
+
+    .testimonial-quote {
+      font-style: italic;
+      color: var(--accent);
+      margin-bottom: 0.7rem;
+    }
+
+    .testimonial-footer {
+      font-size: 0.76rem;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .newsletter-card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: rgba(10, 10, 16, 0.96);
+      padding: 1rem;
+      box-shadow: var(--shadow-subtle);
+      font-size: 0.84rem;
+    }
+
+    .newsletter-card h3 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.05rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .newsletter-card p {
+      color: var(--muted);
+      margin-bottom: 0.7rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      min-width: 0;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 224, 195, 0.35);
+      background: rgba(3, 3, 7, 0.9);
+      padding: 0.45rem 0.8rem;
+      font-size: 0.8rem;
+      color: var(--text);
+      outline: none;
+    }
+
+    .newsletter-form input::placeholder {
+      color: #726a63;
+    }
+
+    .newsletter-form button {
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #f5e0c3, #d19962);
+      color: #2b1f17;
+      padding: 0.45rem 1rem;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+    }
+
+    .newsletter-form button:hover {
+      filter: brightness(1.05);
+    }
+
+    .newsletter-note {
+      margin-top: 0.4rem;
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    /* Footer */
+    footer {
+      padding: 1.7rem 0 1.6rem;
+      border-top: 1px solid rgba(245, 224, 195, 0.16);
+      margin-top: 1rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      opacity: 0.9;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      color: var(--accent);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.2fr);
+      }
+
+      .hero-card {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .collection-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .why-grid,
+      .bottom-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .hero {
+        padding-top: 2.4rem;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .collection-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .products-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="container">
+        <nav class="nav">
+          <div class="logo">
+            <div class="logo-mark">D</div>
+            <div class="logo-text">
+              <span>Dolfy</span>
+              <span>1900s Revival Store</span>
+            </div>
+          </div>
+
+          <div class="nav-links">
+            <a href="#collections">Collections</a>
+            <a href="#products">Featured</a>
+            <a href="#why">Why Dolfy</a>
+            <a href="#stories">Stories</a>
+          </div>
+
+          <div class="nav-cta">
+            <button class="btn btn-ghost" onclick="document.getElementById('newsletter').scrollIntoView({behavior:'smooth'})">
+              Join waitlist
+            </button>
+            <button class="btn btn-accent">
+              Enter store
+            </button>
+          </div>
+
+          <button class="menu-toggle" onclick="alert('Mobile menu coming soon ✨')">
+            Menu
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-grid">
+            <div>
+              <div class="eyebrow">
+                <span class="eyebrow-dot"></span>
+                Step into the 1900s
+              </div>
+
+              <h1 class="hero-title">
+                Travel back in time —
+                <span>one outfit at a time.</span>
+              </h1>
+
+              <p class="hero-subtitle">
+                Dolfy is a shopping website filled with
+                <strong>replicas of clothing & materials from the 1900s</strong>.
+                Every piece is designed to feel like it was pulled from another era.
+              </p>
+
+              <div class="hero-cta-row">
+                <button class="btn btn-accent" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+                  Browse featured pieces
+                </button>
+                <button class="btn btn-ghost" onclick="document.getElementById('why').scrollIntoView({behavior:'smooth'})">
+                  Learn our story
+                </button>
+              </div>
+
+              <div class="hero-note">
+                <div class="hero-note-dot"></div>
+                Limited early access — be one of the first to shop the past.
+              </div>
+
+              <div class="hero-meta">
+                <span>1900–1940 Curated Eras</span>
+                <span>Handpicked Replica Fabrics</span>
+                <span>Story cards with every item</span>
+              </div>
+            </div>
+
+            <aside class="hero-card" aria-label="Featured look from Dolfy">
+              <div class="hero-tag">Featured from 1907</div>
+              <div class="hero-photo" aria-hidden="true"></div>
+              <div class="hero-product-meta">
+                <div class="hero-product-text">
+                  <h3>Edwardian Evening Set</h3>
+                  <p>
+                    A replica ensemble inspired by early-1900s formal wear —
+                    tailored to modern fits with vintage details intact.
+                  </p>
+                </div>
+                <div class="hero-price">
+                  <span>Starting at</span>
+                  <strong>$129</strong>
+                  <span>Pre-order</span>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLLECTIONS -->
+      <section id="collections" class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Era Collections</h2>
+              <p class="section-subtitle">
+                Choose your decade. From Edwardian elegance to roaring 20s nightlife,
+                every collection is crafted to bring a specific moment in history back to life.
+              </p>
+            </div>
+            <div class="section-pill">
+              <span>1900s · 1910s · 1920s · 1930s</span>
+            </div>
+          </div>
+
+          <div class="collection-grid">
+            <article class="card">
+              <div class="card-badge">Collection</div>
+              <div class="card-era">1900–1910</div>
+              <h3 class="card-title">Edwardian Elegance</h3>
+              <p class="card-text">
+                High collars, layered skirts, waistcoats and structured coats —
+                tailored replicas that capture the quiet luxury of turn-of-the-century fashion.
+              </p>
+              <a class="card-link" href="#products">
+                View looks <span>↗</span>
+              </a>
+            </article>
+
+            <article class="card">
+              <div class="card-badge">Collection</div>
+              <div class="card-era">1920–1929</div>
+              <h3 class="card-title">Roaring Nights</h3>
+              <p class="card-text">
+                Jazz-age silhouettes, loose fits, subtle shimmer and bold accessories —
+                built for parties, speakeasies and cinematic edits.
+              </p>
+              <a class="card-link" href="#products">
+                Shop era <span>↗</span>
+              </a>
+            </article>
+
+            <article class="card">
+              <div class="card-badge">Collection</div>
+              <div class="card-era">1930–1940</div>
+              <h3 class="card-title">War-Time Classics</h3>
+              <p class="card-text">
+                Trench coats, utility shirts and everyday wear inspired by the resilience
+                and minimalism of pre-war fashion.
+              </p>
+              <a class="card-link" href="#products">
+                Explore pieces <span>↗</span>
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURED PRODUCTS -->
+      <section id="products" class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Featured Artifacts</h2>
+              <p class="section-subtitle">
+                A preview of products that will live inside Dolfy:
+                real fabrics, modern sizing, 1900s energy.
+                Swap in your own product photos and prices later.
+              </p>
+            </div>
+            <div class="section-pill">
+              <span>Limited pre-release</span>
+            </div>
+          </div>
+
+          <div class="products-grid">
+            <article class="product-card">
+              <div class="product-image"
+                style='background:url("https://images.pexels.com/photos/842980/pexels-photo-842980.jpeg?auto=compress&cs=tinysrgb&w=800") center/cover'>
+              </div>
+              <div class="product-name">Velvet Waistcoat Replica</div>
+              <div class="product-meta">
+                <span class="product-price">$79</span>
+                <span class="product-tag">c. 1905</span>
+              </div>
+              <div class="product-cta">
+                <button>Pre-order</button>
+                <small>Includes era story card</small>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-image"
+                style='background:url("https://images.pexels.com/photos/1777993/pexels-photo-1777993.jpeg?auto=compress&cs=tinysrgb&w=800") center/cover'>
+              </div>
+              <div class="product-name">Twenties Nightfall Dress</div>
+              <div class="product-meta">
+                <span class="product-price">$149</span>
+                <span class="product-tag">1920s</span>
+              </div>
+              <div class="product-cta">
+                <button>Add to wishlist</button>
+                <small>Jazz club ready</small>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-image"
+                style='background:url("https://images.pexels.com/photos/1656684/pexels-photo-1656684.jpeg?auto=compress&cs=tinysrgb&w=800") center/cover'>
+              </div>
+              <div class="product-name">Trench of the Frontlines</div>
+              <div class="product-meta">
+                <span class="product-price">$129</span>
+                <span class="product-tag">1930s</span>
+              </div>
+              <div class="product-cta">
+                <button>Notify me</button>
+                <small>Film-grade replica</small>
+              </div>
+            </article>
+
+            <article class="product-card">
+              <div class="product-image"
+                style='background:url("https://images.pexels.com/photos/1568607/pexels-photo-1568607.jpeg?auto=compress&cs=tinysrgb&w=800") center/cover'>
+              </div>
+              <div class="product-name">Retro Travel Satchel</div>
+              <div class="product-meta">
+                <span class="product-price">$59</span>
+                <span class="product-tag">Accessories</span>
+              </div>
+              <div class="product-cta">
+                <button>Pre-order</button>
+                <small>Pairs with all eras</small>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY DOLFY -->
+      <section id="why" class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 class="section-title">Why Dolfy?</h2>
+              <p class="section-subtitle">
+                Not just “vintage aesthetic”. Dolfy focuses on replicas that
+                respect history while still being wearable in the present.
+              </p>
+            </div>
+          </div>
+
+          <div class="why-grid">
+            <div class="why-points">
+              <div class="why-point">
+                <div class="why-icon">📜</div>
+                <h4>Era-Correct Details</h4>
+                <p>
+                  Stitching, buttons, collars and cuts researched from real
+                  references, then adapted for modern comfort.
+                </p>
+              </div>
+
+              <div class="why-point">
+                <div class="why-icon">🧵</div>
+                <h4>Replica-Grade Fabrics</h4>
+                <p>
+                  We source materials that feel like they belong in another
+                  century — without sacrificing durability.
+                </p>
+              </div>
+
+              <div class="why-point">
+                <div class="why-icon">🎥</div>
+                <h4>Perfect for Shoots</h4>
+                <p>
+                  Ideal for short films, reels, cosplay, theatres and
+                  cinematic edits that demand authenticity.
+                </p>
+              </div>
+
+              <div class="why-point">
+                <div class="why-icon">🎁</div>
+                <h4>Story in Every Box</h4>
+                <p>
+                  Each piece ships with a small card describing the era,
+                  inspiration and how to style it today.
+                </p>
+              </div>
+            </div>
+
+            <aside class="why-card">
+              <h3>Built for people who miss an era they never lived in.</h3>
+              <p>
+                If you’ve ever watched an old movie, paused it and thought
+                “I want that outfit” — Dolfy exists for you.
+              </p>
+              <ul>
+                <li><span></span>Curated drops instead of fast fashion</li>
+                <li><span></span>Timelines: 1900s, 1910s, 1920s, 1930s (more soon)</li>
+                <li><span></span>Every item tagged by decade and story</li>
+              </ul>
+              <div class="why-card-footer">
+                <div>Phase 1: Limited early access store</div>
+                <div>Phase 2: Full catalog & creator collabs</div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- STORIES & NEWSLETTER -->
+      <section id="stories" class="section">
+        <div class="container">
+          <div class="bottom-grid">
+            <article class="testimonial-card">
+              <h2 class="section-title" style="font-size:1.15rem; margin-bottom:0.4rem;">
+                Imagined customer story
+              </h2>
+              <p class="testimonial-quote">
+                “Wearing this felt like walking straight out of a black-and-white film —
+                but with pockets that actually work.”
+              </p>
+              <p>
+                Dolfy is designed for storytellers — filmmakers, photographers,
+                cosplayers and anyone who wants their outfit to feel like a time machine.
+              </p>
+              <div class="testimonial-footer">
+                <span>For shoots · events · edits · everyday wear</span>
+                <span>Replica store · not a costume shop</span>
+              </div>
+            </article>
+
+            <aside id="newsletter" class="newsletter-card">
+              <h3>Be first to enter the store</h3>
+              <p>
+                Drop your email to get notified when Dolfy opens, early-bird
+                discounts on first collections, and behind-the-scenes from our
+                1900s research.
+              </p>
+              <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed to Dolfy updates 🕰️');">
+                <input type="email" placeholder="you@example.com" required />
+                <button type="submit">Notify me</button>
+              </form>
+              <div class="newsletter-note">
+                No spam — only drop announcements & interesting history bites.
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-row">
+          <div>© <span id="year"></span> Dolfy · A store for time travellers.</div>
+          <div class="footer-links">
+            <a href="#hero">Back to top</a>
+            <a href="#collections">Collections</a>
+            <a href="#products">Shop preview</a>
+            <a href="#newsletter">Join waitlist</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
